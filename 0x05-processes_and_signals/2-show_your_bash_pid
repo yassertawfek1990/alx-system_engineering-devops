@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Dispe bash keyword.
+
+ps -aux | grep bash
