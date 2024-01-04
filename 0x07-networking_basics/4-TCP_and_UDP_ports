@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#ksk
+#kkd
+
+netstat -l --program
