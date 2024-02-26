@@ -1,17 +1,30 @@
 #!/usr/bin/env bash
-# Installsfigurations:
+# Configures a ntalling
 
-sudo apt-get update
-sudo apt-get -y install nginx
 
-# Cthe Nginx HTTP service
+echo -e "Updating and installing Nginx.\n"
+sudo apt-get update -y -qq && \
+	 sudo apt-get install nginx -y
+
+echo -e "\nSetting up some minor stuff.\n"
+
+# sta
+sudo service nginx start
+
+# allow
 sudo ufw allow 'Nginx HTTP'
 
-# Creatml page
-echo "Hello World!" | sudo tee /var/www/html/index.html
+# Gi
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
 
-# Testing errors
-sudo nginx -t
+# Backup
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
 
-# RestarNginx
-sudo service nginx start
+# Creatin
+echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+
+# Re nginx
+sudo service nginx restart
+
+echo -e "\nCompleted. ✅\n"
