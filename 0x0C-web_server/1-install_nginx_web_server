@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 # Installsfigurations:
 
-apt-get update
-apt-get install -y nginx
+sudo apt-get update
+sudo apt-get -y install nginx
 
-mkdir /etc/nginx/html
-touch /etc/nginx/html/index.html
-echo "Holberton School" > /etc/nginx/html/index.html
-printf %s "server {
-     listen      80 default_server;
-     listen      [::]:80 default_server;
-     root        /etc/nginx/html;
-     index       index.html index.htm;
-}
-" > /etc/nginx/sites-available/default
+# Cthe Nginx HTTP service
+sudo ufw allow 'Nginx HTTP'
 
-service nginx restart
+# Creatml page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Testing errors
+sudo nginx -t
+
+# RestarNginx
+sudo service nginx start
