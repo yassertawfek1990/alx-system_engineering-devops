@@ -1,18 +1,19 @@
 #!/usr/bin/python3
-"""Ext."""
+"""Exportformat."""
 import json
 import requests
+import sys
 
 if __name__ == "__main__":
-    urla = "https://jsonplaceholder.typicode.com/"
-    s = requests.get(urla + "users").json()
+    user_id = sys.argv[1]
+    la = "https://jsonplaceholder.typicode.com/"
+    u = requests.get(la + "users/{}".format(user_id)).json()
+    n = u.get("username")
+    t = requests.get(la + "todos", params={"userId": user_id}).json()
 
-    with open("todo_all_employees.json", "w") as j:
-        json.dump({
-            x.get("id"): [{
-                "task": c.get("title"),
-                "completed": c.get("completed"),
-                "username": x.get("username")
-            } for c in requests.get(urla + "todos",
-                                    params={"userId": x.get("id")}).json()]
-            for x in s}, j)
+    with open("{}.json".format(user_id), "w") as j:
+        json.dump({user_id: [{
+                "task": x.get("title"),
+                "completed": x.get("completed"),
+                "username": n
+            } for x in t]}, j)
