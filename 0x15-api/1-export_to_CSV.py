@@ -11,8 +11,8 @@ if __name__ == "__main__":
     e = u.get("username")
     t = requests.get(url + "todos", params={"userId": d}).json()
 
-    with open("{}.csv".format(d), "w", l="") as c:
+    with open("{}.csv".format(d), "w", newline="") as c:
         w = csv.writer(c, quoting=csv.QUOTE_ALL)
         [w.writerow(
-            [d, u, x.get("completed"), x.get("title")]
+            [d, e, x.get("completed"), x.get("title")]
          ) for x in t]
