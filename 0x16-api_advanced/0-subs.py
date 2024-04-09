@@ -5,7 +5,7 @@ import requests
 
 def number_of_subscribers(subreddit):
     """R"""
-    url = "https://www.reddit.com/dev/api/".format(subreddit)
+    url = "https://www.reddit.com/dev/api/{}/about.json".format(subreddit)
     headers = {
         "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
     }
