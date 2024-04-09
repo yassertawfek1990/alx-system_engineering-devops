@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-"""F."""
+"""F"""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """R."""
-    u = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    h = {
+    """R"""
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {
         "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
     }
-    r = requests.get(u, headers=h, allow_redirects=False)
-    if r.status_code == 404:
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
         return 0
-    s = r.json().get("data")
-    return s.get("subscribers")
+    results = response.json().get("data")
+    return results.get("subscribers")
